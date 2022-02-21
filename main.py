@@ -22,7 +22,7 @@ def get_book(book_id):
 
 @app.route('/books/<int:book_id>', methods=['PUT'])
 def update_book(book_id):
-    book = next((book for book in books if book['id'] == book_id),        None) 
+    book = next((book for book in books if book['id'] == book_id),None) 
     if not book:
        return jsonify(
        message),HTTPStatus.NOT_FOUND
