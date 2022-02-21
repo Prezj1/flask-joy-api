@@ -28,8 +28,6 @@ class Books(Resource):
         books.append(book)
         return jsonify(books), HTTPStatus.CREATED
 
-
-class Book(Resource):
     def get(self, book_id):
         book = next(
             (book for book in books if book['id'] ==book_id),None) 
@@ -51,9 +49,34 @@ class Book(Resource):
             }
         )
         return jsonify(book)
+        
+
+
+# class Book(Resource):
+#     def get(self, book_id):
+#         book = next(
+#             (book for book in books if book['id'] ==book_id),None) 
+#         if book:
+#             return jsonify(book)
+#         return jsonify(message),HTTPStatus.NOT_FOUND
+
+    # def put(self,book_id):
+    #     book = next((book for book in books if book['id'] == book_id),None) 
+    #     if not book:
+    #         return jsonify(message),HTTPStatus.NOT_FOUND
+    #     data = request.get_json()
+    #     book.update(
+    #     {
+    #         'title': data.get('book_title'),
+    #         'author': data.get('book_author'),
+    #         'publisher': data.get('publisher'),
+    #         'description': data.get('description'),
+    #         }
+    #     )
+    #     return jsonify(book)
 
 api.add_resource(Books, '/')
-api.add_resource(Book, '//<int:book_id>')
+api.add_resource(Books, '//<int:book_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
