@@ -67,7 +67,7 @@ books = [
 "book_author": "Stan Lee",
 "publisher": "Marvel",
 "description": "Here is where Spiderman began"
-}
+},
 ]
 
 message = {"message": "Book not found, please add a new"}
