@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request 
+from flask import Flask, jsonify, request, make_response
 from flask_restful import Resource, Api
 from comic_books import books, message
 from flask_cors import CORS
@@ -10,7 +10,7 @@ CORS(app)
 
 class Books(Resource):
     def get(self):
-        return jsonify(books)
+        return make_response(jsonify(books))
 
 
 class New(Resource):
@@ -28,7 +28,7 @@ class New(Resource):
             "description": description
             }
         books.append(book)
-        return jsonify(books), HTTPStatus.CREATED
+        return make_response(jsonify(books), HTTPStatus.CREATED)
 
 
 class Update(Resource):
@@ -45,7 +45,7 @@ class Update(Resource):
             'description': data.get('description'),
             }
         )
-        return jsonify(book)
+        return make_response(jsonify(book))
 
 
 class Book(Resource):
@@ -54,7 +54,7 @@ class Book(Resource):
             (book for book in books if book['id'] ==book_id),None) 
         if book:
             return jsonify(book)
-        return jsonify(message),HTTPStatus.NOT_FOUND
+        return make_response(jsonify(message),HTTPStatus.NOT_FOUND)
 
 
 
