@@ -61,7 +61,7 @@ class Book(Resource):
 api.add_resource(Books, '/')
 api.add_resource(Book, '//<int:book_id>')
 api.add_resource(Update, '/')
-api.add_resource(New, '/')
+api.add_resource(New, '//<int:book_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
