@@ -1,7 +1,5 @@
-import re
 from flask import Flask, jsonify, request, make_response
 from flask_restful import Resource, Api
-from sqlalchemy import delete
 from comic_books import books, message, no_book, book_deleted
 from flask_cors import CORS
 from http import HTTPStatus
@@ -62,6 +60,7 @@ class Book(Resource):
         for book in books:
             if book['id'] == book_id:
                 del book
+                del books[int(book_id) - 1]
                 return make_response(jsonify(book_deleted))
             return make_response(jsonify(no_book),HTTPStatus.NOT_FOUND)
 
