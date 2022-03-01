@@ -17,7 +17,7 @@ class Books(Resource):
 
 class New(Resource):
     def post(self):
-        data = request.get_json("http://127.0.0.1:5000/")
+        data = request.get_json("https://flask-joy-api.herokuapp.com/")
         title = data.get('book_title')
         author = data.get('book_author')
         publisher = data.get('publisher')
@@ -38,7 +38,7 @@ class Update(Resource):
         book = next((book for book in books if book['id'] == book_id),None) 
         if not book:
             return make_response(jsonify(message),HTTPStatus.NOT_FOUND)
-        data = request.get_json("http://127.0.0.1:5000/")
+        data = request.get_json("https://flask-joy-api.herokuapp.com/")
         book.update(
         {
             'book_title': data.get('book_title'),
