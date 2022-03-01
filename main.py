@@ -24,8 +24,8 @@ class New(Resource):
         description = data.get('description')
         book = {
             "id": len(books)+1,  
-            "book_title": title,
-            "book_author": author,
+            "title": title,
+            "author": author,
             "publisher": publisher,
             "description": description
             }
@@ -41,8 +41,8 @@ class Update(Resource):
         data = request.get_json("https://flask-joy-api.herokuapp.com/")
         book.update(
         {
-            'book_title': data.get('book_title'),
-            'book_author': data.get('book_author'),
+            'title': data.get('book_title'),
+            'author': data.get('book_author'),
             'publisher': data.get('publisher'),
             'description': data.get('description'),
             }
@@ -59,12 +59,11 @@ class Book(Resource):
         return make_response(jsonify(message),HTTPStatus.NOT_FOUND)
 
     def delete(self, book_id):
-        book = next((book for book in books if book['id'] == book_id),None) 
         for book in books:
+            if book['id'] == book_id:
                 del book
-                del books[int(book_id) -1]
                 return make_response(jsonify(book_deleted))
-        return make_response(jsonify(no_book),HTTPStatus.NOT_FOUND)
+            return make_response(jsonify(no_book),HTTPStatus.NOT_FOUND)
 
         
 
