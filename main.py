@@ -22,8 +22,8 @@ class New(Resource):
         description = data.get('description')
         book = {
             "id": len(books)+1,  
-            "title": title,
-            "author": author,
+            "book_title": title,
+            "book_author": author,
             "publisher": publisher,
             "description": description
             }
@@ -39,8 +39,8 @@ class Update(Resource):
         data = request.get_json("https://flask-joy-api.herokuapp.com/")
         book.update(
         {
-            'title': data.get('book_title'),
-            'author': data.get('book_author'),
+            'book_title': data.get('book_title'),
+            'book_author': data.get('book_author'),
             'publisher': data.get('publisher'),
             'description': data.get('description'),
             }
