@@ -71,3 +71,7 @@ books = [
 ]
 
 message = {"message": "Book not found, please add a new"}
+
+no_book = {"message": "The book you have tried to delete doesnt exist"}
+
+book_deleted = {'message': 'This book has now been deleted'}
